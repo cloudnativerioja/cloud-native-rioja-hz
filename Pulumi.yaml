@@ -1,0 +1,3 @@
+name: cloudflare-iac-rioja
+runtime: go
+description: Code to manage cloudflare cloudnativerioja.com
