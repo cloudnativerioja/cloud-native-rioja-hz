@@ -80,6 +80,17 @@ func main() {
 		if err != nil {
 			return err
 		}
+
+		_, err = cloudflare.NewRecord(ctx, "txt-github-pages", &cloudflare.RecordArgs{
+			Name:   pulumi.Sprintf("_github-pages-challenge-cloudnativerioja"),
+			Type:   pulumi.String("TXT"),
+			Value:  pulumi.String("f8e61a9a46363cd21f945152afca41"),
+			ZoneId: zoneId,
+		})
+		if err != nil {
+			return err
+		}
+
 		return nil
 	})
 }
