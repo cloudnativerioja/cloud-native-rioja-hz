@@ -1,0 +1,30 @@
+name: Pulumi-deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  update:
+    name: Desploy/update-infra
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: "stable"
+      - run: go mod download
+      - uses: pulumi/actions@v3
+        with:
+          command: up
+          color: always
+          stack-name: cloudnativerioja/cloudflare-iac-rioja/cloudflare-iac-rioja
+        env:
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.55.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          WITH_V: false
+          DEFAULT_BUMP: patch
