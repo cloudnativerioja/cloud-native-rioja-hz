@@ -104,6 +104,30 @@ func main() {
 			return err
 		}
 
+		// Create the A record
+		_, err = cloudflare.NewRecord(ctx, "ns1-civo", &cloudflare.RecordArgs{
+			Name:    pulumi.Sprintf("cluster.%s", domain),
+			Type:    pulumi.String("NS"),
+			Value:   pulumi.String("ns0.civo.com"),
+			ZoneId:  zoneId,
+			Proxied: pulumi.Bool(true),
+		})
+		if err != nil {
+			return err
+		}
+
+		// Create the A record
+		_, err = cloudflare.NewRecord(ctx, "ns2-civo", &cloudflare.RecordArgs{
+			Name:    pulumi.Sprintf("cluster.%s", domain),
+			Type:    pulumi.String("NS"),
+			Value:   pulumi.String("ns1.civo.com"),
+			ZoneId:  zoneId,
+			Proxied: pulumi.Bool(true),
+		})
+		if err != nil {
+			return err
+		}
+
 		return nil
 	})
 }
