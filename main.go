@@ -110,7 +110,6 @@ func main() {
 			Type:    pulumi.String("NS"),
 			Value:   pulumi.String("ns0.civo.com"),
 			ZoneId:  zoneId,
-			Proxied: pulumi.Bool(true),
 		})
 		if err != nil {
 			return err
@@ -122,7 +121,6 @@ func main() {
 			Type:    pulumi.String("NS"),
 			Value:   pulumi.String("ns1.civo.com"),
 			ZoneId:  zoneId,
-			Proxied: pulumi.Bool(true),
 		})
 		if err != nil {
 			return err
