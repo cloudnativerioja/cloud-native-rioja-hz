@@ -71,18 +71,6 @@ func main() {
 			return err
 		}
 
-		// Create the A record
-		_, err = cloudflare.NewRecord(ctx, "permission-manager", &cloudflare.RecordArgs{
-			Name:    pulumi.Sprintf("perms.%s", domain),
-			Type:    pulumi.String("A"),
-			Value:   pulumi.String("74.220.16.39"),
-			ZoneId:  zoneId,
-			Proxied: pulumi.Bool(true),
-		})
-		if err != nil {
-			return err
-		}
-
 		// Create the TXT record
 		_, err = cloudflare.NewRecord(ctx, "txt-github", &cloudflare.RecordArgs{
 			Name:   pulumi.Sprintf("_github-challenge-cloudnativerioja-org"),
@@ -106,10 +94,10 @@ func main() {
 
 		// Create the A record
 		_, err = cloudflare.NewRecord(ctx, "ns1-civo", &cloudflare.RecordArgs{
-			Name:    pulumi.Sprintf("cluster.%s", domain),
-			Type:    pulumi.String("NS"),
-			Value:   pulumi.String("ns0.civo.com"),
-			ZoneId:  zoneId,
+			Name:   pulumi.Sprintf("cluster.%s", domain),
+			Type:   pulumi.String("NS"),
+			Value:  pulumi.String("ns0.civo.com"),
+			ZoneId: zoneId,
 		})
 		if err != nil {
 			return err
@@ -117,10 +105,10 @@ func main() {
 
 		// Create the A record
 		_, err = cloudflare.NewRecord(ctx, "ns2-civo", &cloudflare.RecordArgs{
-			Name:    pulumi.Sprintf("cluster.%s", domain),
-			Type:    pulumi.String("NS"),
-			Value:   pulumi.String("ns1.civo.com"),
-			ZoneId:  zoneId,
+			Name:   pulumi.Sprintf("cluster.%s", domain),
+			Type:   pulumi.String("NS"),
+			Value:  pulumi.String("ns1.civo.com"),
+			ZoneId: zoneId,
 		})
 		if err != nil {
 			return err
