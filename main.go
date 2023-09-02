@@ -21,7 +21,7 @@ func main() {
 
 	// Start the Pulumi program
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		// Replace `example.com` with your domain and `zoneId` with your zone ID.
+		// Set the variables
 		zoneId := pulumi.String(zoneID)
 		domain := pulumi.String("cloudnativerioja.com")
 
@@ -81,7 +81,7 @@ func main() {
 		if err != nil {
 			return err
 		}
-
+		// TXT reference for GitHub Pages
 		_, err = cloudflare.NewRecord(ctx, "txt-github-pages", &cloudflare.RecordArgs{
 			Name:   pulumi.Sprintf("_github-pages-challenge-cloudnativerioja"),
 			Type:   pulumi.String("TXT"),
