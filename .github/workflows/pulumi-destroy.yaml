@@ -9,12 +9,12 @@ jobs:
     name: Destroy-infra
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with:
           go-version: "stable"
       - run: go mod download
-      - uses: pulumi/actions@v3
+      - uses: pulumi/actions@v5
         with:
           command: destroy
           color: always
