@@ -49,6 +49,7 @@ jobs:
           color: always
           command: preview
           stack-name: cloudnativerioja/cloudflare-iac-rioja/cloudflare-iac-rioja
+          pulumi-version: v3.85.0
         env:
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
